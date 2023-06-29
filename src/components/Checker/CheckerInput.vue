@@ -22,7 +22,6 @@ export default {
 
     const updateUserInput = (value) => {
       userInput.value = value;
-      // Emit the updated value
       emit('update:modelValue', value);
     };
 
@@ -48,7 +47,4 @@ export default {
   @include common-input;
 }
 
-.card__title {
-  font-size: 18px;
-}
 </style>

@@ -1,7 +1,10 @@
 <template>
   <card>
     <p v-if="isLoading">Loading...</p>
-    <p v-else>{{ responseData }}</p>
+    <p v-else>
+      <strong>Data for typing:</strong>
+      {{ responseData }}
+    </p>
     <checker-input v-model="userInput" />
     <checker-results :userInput="userInput" :quoteText="responseData" />
   </card>
@@ -43,12 +46,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-@import 'src/scss/variables';
-@import 'src/scss/mixins';
-
-.card {
-  @include common-card;
-}
-</style>
