@@ -1,9 +1,9 @@
 <template>
   <AppModal :showModal="pathIsIncorrect">
-    <h2 class="modal-title">Упс! Мы не знаем как Вы попали сюда, но похоже данной страницы не существует :)</h2>
+    <h2 class="modal-title">Oops! Seems that the URL path is not correct</h2>
     <div class="modal-content">
       <span class="modal-content__btn">
-        <button class="btn btn-secondary" @click="goHome">Домой</button>
+        <button class="btn btn-secondary" @click="goHome">Back home</button>
       </span>
     </div>
   </AppModal>
