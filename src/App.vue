@@ -1,8 +1,10 @@
-<script setup>
-</script>
-
 <template>
+  <div id="app">
+    <the-navbar />
+    <router-view/>
+  </div>
 </template>
 
-<style scoped>
-</style>
+<script setup>
+import TheNavbar from './components/TheNavbar.vue';
+</script>
