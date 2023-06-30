@@ -1,28 +1,38 @@
 <template>
-  <div class="results">
-    <span class="results__count">
-      Correct symbols count: {{ correctSymbolsCount }}
-      / {{ symbolExtractor }}
-    </span>
-    <span v-if="isTimerStopped" class="results__per-minute">
-      Per minute: {{ calculateSymbolsPerMinute }},
-      Accurate: {{ typingAccuracy }}%
-    </span>
-    <span v-if="!isTimerStopped" class="results__timer">Timer: {{ formattedTimer }}</span>
-    <span class="results__controls">
-      <select class="results__duration" v-model="selectedDuration">
-        <option value="60">1 minute</option>
-        <option value="120">2 minutes</option>
-        <option value="180">3 minutes</option>
-      </select>
-      <button class="results__start-btn btn btn-secondary" @click="startTimer">Start</button>
-    </span>
+  <div class="checker">
+    <div class="checker__results">
+      <div class="checker__count" v-show="isTimerStarted || isTimerComplete">
+        Correct symbols count: {{ correctSymbolsCount }} / {{ symbolExtractor }}
+      </div>
+      <div v-if="isTimerComplete" class="checker__stats">
+        <div class="checker__per-minute">
+          Symbols per minute: {{ calculateSymbolsPerMinute }}
+        </div>
+        <div class="checker__accuracy">
+          Accuracy: {{ typingAccuracy }}%
+        </div>
+      </div>
+    </div>
+    <div class="checker__controls">
+      <div class="checker__duration">
+        <label for="duration">Duration: </label>
+        <select id="duration" v-model="selectedDuration">
+          <option value="60">1 minute</option>
+          <option value="120">2 minutes</option>
+          <option value="180">3 minutes</option>
+        </select>
+      </div>
+      <button class="checker__start-btn btn btn-primary" @click="startTimer">Start</button>
+    </div>
+    <div v-if="isTimerStarted" class="checker__timer">
+      Timer: {{ timerStarter }}
+    </div>
   </div>
 </template>
 
 <script>
 import { computed, ref, toRef, watch } from 'vue';
-import {useTimeFormat} from '../../use/useTimeFormat.js';
+import { useTimeFormat } from '../../use/useTimeFormat.js';
 
 export default {
   props: {
@@ -39,6 +49,7 @@ export default {
   setup(props) {
     const correctSymbolsCount = ref(0);
     const timer = ref(0);
+    const isTimerStarted = ref(false);
     const isTimerStopped = ref(false);
     const selectedDuration = ref('60'); // Default duration
     const quoteTextRef = toRef(props, 'quoteText');
@@ -50,7 +61,7 @@ export default {
       return quoteSymbols ? quoteSymbols.length : 0;
     });
 
-    const formattedTimer = computed(() => {
+    const timerStarter = computed(() => {
       return useTimeFormat(timer.value, selectedDuration.value);
     });
 
@@ -59,7 +70,7 @@ export default {
     });
 
     const calculateSymbolsPerMinute = computed(() => {
-      return correctSymbolsCount.value;
+      return Math.round((correctSymbolsCount.value / parseInt(selectedDuration.value)) * 60);
     });
 
     const typingAccuracy = computed(() => {
@@ -88,6 +99,7 @@ export default {
     });
 
     const startTimer = () => {
+      isTimerStarted.value = true;
       clearInterval(intervalId); // Clear the previous interval
       timer.value = 0; // Reset the timer
       correctSymbolsCount.value = 0; // Reset the correct symbols count
@@ -103,6 +115,7 @@ export default {
             if (timer.value >= parseInt(selectedDuration.value)) {
               clearInterval(intervalId);
               isTimerStopped.value = true;
+              isTimerStarted.value = false;
               stop(); // Manually stop the watch
             }
           },
@@ -115,9 +128,10 @@ export default {
       timer,
       symbolExtractor,
       typingAccuracy,
-      formattedTimer,
+      timerStarter,
       isTimerComplete,
       startTimer,
+      isTimerStarted,
       isTimerStopped,
       calculateSymbolsPerMinute,
     };
@@ -127,41 +141,77 @@ export default {
 
 <style scoped lang="scss">
 @import 'src/scss/variables';
+@import 'src/scss/mixins';
 
-.results {
+.checker {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  font-size: 15px;
 
-  @media #{$common-screen-size} {
-    font-size: 13px;
+  &__results {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    @media #{$common-screen-size} {
+      font-size: 13px;
+    }
   }
-}
 
-.results__controls {
-  display: flex;
-  align-items: center;
-}
+  &__count {
+    margin-bottom: 0.5rem;
+  }
 
-.results__duration {
-  margin-right: 0.5rem;
-}
-
-.results__start-btn {
-  margin-left: 0.5rem;
-  flex-shrink: 0;
-}
-
-@media #{$common-screen-size} {
-  .results__controls {
+  &__stats {
+    display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 0.5rem;
+
+    &__per-minute,
+    &__accuracy {
+      margin-bottom: 0.2rem;
+    }
   }
 
-  .results__duration,
-  .results__start-btn {
-    margin: 0.5rem 0;
+  &__controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    @media #{$common-screen-size} {
+      font-size: 13px;
+    }
+
+    label {
+      margin-right: 0.2rem;
+
+      @media #{$common-screen-size} {
+        font-size: 13px;
+      }
+    }
+    select {
+      padding: 0.3rem;
+      @include common-select;
+
+      @media #{$common-screen-size} {
+        font-size: 13px;
+      }
+    }
+  }
+
+  &__start-btn {
+    margin-left: 0.5rem;
+    padding: 0.3rem 1rem;
+    font-size: 14px;
+
+    @media #{$common-screen-size} {
+      font-size: 13px;
+    }
+  }
+
+  &__timer {
+    font-size: 15px;
   }
 }
 </style>

@@ -20,7 +20,7 @@ import instance from '../../axios/index.js';
 import CheckerResults from './CheckerResults.vue';
 import CheckerInput from './CheckerInput.vue';
 import Card from '../ui/Card/Card.vue';
-import AppLoader from '../ui/Loaders/AppLoader.vue';
+import AppLoader from '../ui/Loader/AppLoader.vue';
 
 export default {
   components: {AppLoader, Card, CheckerInput, CheckerResults },
