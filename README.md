@@ -64,7 +64,7 @@ VITE_CORS_PROXY=/this-is-the-proxy/
 Replace `/this-is-the-base-url/` with your desired base URL and `/this-is-the-proxy/` with the proxy URL if needed.
 
 
-### Running the app:
+### Running the app
    
 If using Yarn:
 ```bash
