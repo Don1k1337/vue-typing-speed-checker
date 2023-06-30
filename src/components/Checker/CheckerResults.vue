@@ -49,7 +49,9 @@ export default {
       default: null,
     },
   },
-  setup(props) {
+  emits: ['clearInput'],
+
+  setup(props, { emit }) {
     const correctSymbolsCount = ref(0);
     const timer = ref(0);
     const isTimerStarted = ref(false);
@@ -106,6 +108,7 @@ export default {
       isTimerStopped.value = true;
       clearInterval(intervalId);
       timer.value = 0;
+      emit('clearInput')
     }
     const startTimer = () => {
       isTimerStarted.value = true;

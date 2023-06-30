@@ -8,7 +8,7 @@
       </p>
       <div>
         <checker-input v-model="userInput" />
-        <checker-results :userInput="userInput" :quoteText="responseData" />
+        <checker-results :userInput="userInput" @clearInput="userInput = ''" :quoteText="responseData" />
       </div>
     </template>
   </card>

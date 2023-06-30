@@ -10,7 +10,7 @@ import Card from '../ui/Card/Card.vue';
 
 export default {
   components: {Card},
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'clearInput'],
   props: {
     modelValue: {
       type: String,
@@ -25,10 +25,15 @@ export default {
       emit('update:modelValue', value);
     };
 
+    const clearInput = () => {
+      emit('clearInput');
+    }
+
     return {
       title: 'The speed typing area:',
       userInput,
       updateUserInput,
+      clearInput
     };
   },
 };
