@@ -34,7 +34,7 @@ export default {
     width: 32px;
     height: 32px;
     background: #a63030;
-    animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation: loader-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &:after,
     &:before {
@@ -58,7 +58,7 @@ export default {
   }
 }
 
-@keyframes lds-heart {
+@keyframes loader-heart {
   0% {
     transform: scale(0.95);
   }

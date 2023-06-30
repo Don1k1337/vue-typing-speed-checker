@@ -2,7 +2,7 @@
   <card>
     <template v-slot:default>
       <h2 class="card__title">{{ cardTitle }}</h2>
-      <p>
+      <p class="card__paragraph">
         Welcome to the Type Speed Checker app!
         <br />
         Test your typing speed and accuracy with this interactive tool.
@@ -27,3 +27,18 @@ const startChecker = () => {
   router.push('/checker');
 };
 </script>
+
+<style scoped lang="scss">
+@import 'src/scss/variables';
+
+.card {
+  @media #{$common-screen-size} {
+    .card__paragraph {
+      font-size: 13px;
+    }
+    .card__title {
+      font-size: 15px;
+    }
+  }
+}
+</style>
