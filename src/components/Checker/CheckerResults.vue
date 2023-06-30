@@ -22,7 +22,10 @@
           <option value="180">3 minutes</option>
         </select>
       </div>
-      <button class="checker__start-btn btn btn-primary" @click="startTimer">Start</button>
+      <div>
+        <button class="checker__start-btn btn btn-primary" @click="startTimer">Start</button>
+        <button class="checker__reset-btn btn btn-danger" @click="resetTimer">Reset</button>
+      </div>
     </div>
     <div v-if="isTimerStarted" class="checker__timer">
       Timer: {{ timerStarter }}
@@ -98,6 +101,12 @@ export default {
       }
     });
 
+    const resetTimer = () => {
+      isTimerStarted.value = false;
+      isTimerStopped.value = true;
+      clearInterval(intervalId);
+      timer.value = 0;
+    }
     const startTimer = () => {
       isTimerStarted.value = true;
       clearInterval(intervalId); // Clear the previous interval
@@ -131,6 +140,7 @@ export default {
       timerStarter,
       isTimerComplete,
       startTimer,
+      resetTimer,
       isTimerStarted,
       isTimerStopped,
       calculateSymbolsPerMinute,
@@ -205,13 +215,18 @@ export default {
     }
   }
 
-  &__start-btn {
-    margin-left: 0.5rem;
+  &__start-btn, &__reset-btn {
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
     padding: 0.3rem 1rem;
     font-size: 14px;
 
     @media #{$common-screen-size} {
       font-size: 13px;
+    }
+    
+    @media (max-width: 412px) {
+      margin-top: 0.5rem;
     }
   }
 
