@@ -1,5 +1,5 @@
 <template>
-  <card card-title="Speed typing area:">
+  <card :card-title="title">
     <input type="text" class="card__input" :value="modelValue" @input="updateUserInput($event.target.value)">
   </card>
 </template>
@@ -26,6 +26,7 @@ export default {
     };
 
     return {
+      title: 'The speed typing area:',
       userInput,
       updateUserInput,
     };

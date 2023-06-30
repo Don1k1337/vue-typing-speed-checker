@@ -11,19 +11,21 @@
 
 <script>
 import { ref } from 'vue';
-import { goHomeMixin } from '../mixin/goHomeMixin.js';
 import AppModal from '../components/ui/Modal/AppModal.vue';
+import router from '../router/index.js';
 
 export default {
   components: { AppModal },
-  mixins: [goHomeMixin],
+
   setup() {
     const pathIsIncorrect = ref(true);
-    const { goHome } = goHomeMixin;
 
+    const goHome = () => {
+      return router.push('/')
+    }
     return {
       pathIsIncorrect,
-      goHome,
+      goHome
     };
   },
 };

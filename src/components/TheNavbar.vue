@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <h1 class="navbar__title">SpeedTypingChecker</h1>
+    <h1 class="navbar__title">Speed Typer</h1>
     <router-link to="/">Home</router-link>
   </nav>
 </template>
