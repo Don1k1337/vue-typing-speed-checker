@@ -147,7 +147,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 15px;
 
   &__results {
     margin-bottom: 1rem;
@@ -162,6 +161,12 @@ export default {
     margin-bottom: 0.5rem;
   }
 
+  .checker__timer {
+    @media #{$common-screen-size} {
+      font-weight: 700;
+      font-size: 13px;
+    }
+  }
   &__stats {
     display: flex;
     flex-direction: column;
