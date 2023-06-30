@@ -1,12 +1,16 @@
 <template>
   <card>
     <app-loader v-if="isLoading" />
-    <p v-else>
-      <strong>Data for typing:</strong>
-      {{ responseData }}
-    </p>
-    <checker-input v-model="userInput" />
-    <checker-results :userInput="userInput" :quoteText="responseData" />
+    <template v-else>
+      <p>
+        <strong>Data for typing:</strong>
+        {{ responseData }}
+      </p>
+      <div>
+        <checker-input v-model="userInput" />
+        <checker-results :userInput="userInput" :quoteText="responseData" />
+      </div>
+    </template>
   </card>
 </template>
 
@@ -47,3 +51,13 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+@import 'src/scss/variables';
+.card {
+  @media #{$common-screen-size} {
+    font-size: 14px;
+  }
+}
+
+</style>

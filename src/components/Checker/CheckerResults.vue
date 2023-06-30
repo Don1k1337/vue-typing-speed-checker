@@ -1,7 +1,13 @@
 <template>
   <div class="results">
-    <span class="results__count">Correct symbols count: {{ correctSymbolsCount }} / {{ symbolExtractor }}</span>
-    <span v-if="isTimerStopped" class="results__per-minute">Correct symbols per minute: {{ calculateSymbolsPerMinute }}</span>
+    <span class="results__count">
+      Correct symbols count: {{ correctSymbolsCount }}
+      / {{ symbolExtractor }}
+    </span>
+    <span v-if="isTimerStopped" class="results__per-minute">
+      Per minute: {{ calculateSymbolsPerMinute }},
+      Accurate: {{ typingAccuracy }}%
+    </span>
     <span v-if="!isTimerStopped" class="results__timer">Timer: {{ formattedTimer }}</span>
     <span class="results__controls">
       <select class="results__duration" v-model="selectedDuration">
@@ -35,8 +41,8 @@ export default {
     const timer = ref(0);
     const isTimerStopped = ref(false);
     const selectedDuration = ref('60'); // Default duration
-    const userInputRef = toRef(props, 'userInput');
     const quoteTextRef = toRef(props, 'quoteText');
+    const userInputRef = toRef(props, 'userInput');
     let intervalId = null;
 
     const symbolExtractor = computed(() => {
@@ -54,6 +60,14 @@ export default {
 
     const calculateSymbolsPerMinute = computed(() => {
       return correctSymbolsCount.value;
+    });
+
+    const typingAccuracy = computed(() => {
+      if (correctSymbolsCount.value === 0 || symbolExtractor.value === 0) {
+        return 0;
+      }
+      const accuracy = (correctSymbolsCount.value / symbolExtractor.value) * 100;
+      return Math.round(accuracy * 10) / 10;
     });
 
     watch([userInputRef, quoteTextRef, isTimerStopped], ([newUserInput, newQuoteText]) => {
@@ -100,6 +114,7 @@ export default {
       selectedDuration,
       timer,
       symbolExtractor,
+      typingAccuracy,
       formattedTimer,
       isTimerComplete,
       startTimer,
@@ -111,22 +126,42 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import 'src/scss/mixins';
+@import 'src/scss/variables';
 
 .results {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
+  @media #{$common-screen-size} {
+    font-size: 13px;
+  }
 }
 
 .results__controls {
-  .results__duration {
-    @include common-select;
-  }
-
-  .results__start-btn {
-    margin-left: 1.2rem;
-  }
+  display: flex;
+  align-items: center;
 }
 
+.results__duration {
+  margin-right: 0.5rem;
+}
+
+.results__start-btn {
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+@media #{$common-screen-size} {
+  .results__controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .results__duration,
+  .results__start-btn {
+    margin: 0.5rem 0;
+  }
+}
 </style>
