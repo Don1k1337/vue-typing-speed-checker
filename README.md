@@ -13,7 +13,7 @@ This is a web application that helps you improve your typing speed and accuracy.
 
 ## Features
 
-- Specify the duration of the typing test (1, 2, or 3 minutes).
+- Set the duration of the typing test according to your preference (including 5, 15, and 30 seconds, as well as 1, 2, or 3 minutes). 
 - Fetch random quotes from the Quotable API.
 - Start the typing test and see the quote to type.
 - Record your typing speed and accuracy.
