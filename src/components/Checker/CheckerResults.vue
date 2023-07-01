@@ -17,6 +17,9 @@
       <div class="checker__duration">
         <label for="duration">Duration: </label>
         <select id="duration" v-model="selectedDuration">
+          <option value="5">5 seconds</option>
+          <option value="15">15 seconds</option>
+          <option value="30">30 seconds</option>
           <option value="60">1 minute</option>
           <option value="120">2 minutes</option>
           <option value="180">3 minutes</option>
@@ -67,7 +70,7 @@ export default {
     });
 
     const timerStarter = computed(() => {
-      return useTimeFormat(timer.value, selectedDuration.value);
+      return useTimeFormat(timer.value);
     });
 
     const isTimerComplete = computed(() => {
