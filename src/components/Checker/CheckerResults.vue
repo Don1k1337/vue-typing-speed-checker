@@ -113,6 +113,7 @@ export default {
     const startTimer = () => {
       isTimerStarted.value = true;
       clearInterval(intervalId); // Clear the previous interval
+      emit('clearInput') // Clear input value
       timer.value = 0; // Reset the timer
       correctSymbolsCount.value = 0; // Reset the correct symbols count
       isTimerStopped.value = false;
