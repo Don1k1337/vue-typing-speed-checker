@@ -54,7 +54,7 @@ npm install
 
 ### Configuration
 
-The application using external API service for quotes. To configure the base URL and base proxy, create a `.env` file in the project root directory and add the following variables:
+The application using external API service for quotes. To configure the base URL, create a `.env` file in the project root directory and add the following variables:
 
 ```
 VITE_BASE_URL=/this-is-the-base-url/
