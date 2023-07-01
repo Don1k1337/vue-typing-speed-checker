@@ -58,10 +58,9 @@ The application using external API service for quotes. To configure the base URL
 
 ```
 VITE_BASE_URL=/this-is-the-base-url/
-VITE_CORS_PROXY=/this-is-the-proxy/
 ```
 
-Replace `/this-is-the-base-url/` with your desired base URL and `/this-is-the-proxy/` with the proxy URL if needed.
+Replace `/this-is-the-base-url/` with your desired base URL.
 
 
 ### Running the app
