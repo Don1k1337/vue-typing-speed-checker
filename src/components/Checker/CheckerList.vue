@@ -32,8 +32,8 @@ export default {
     const fetchData = async () => {
       try {
         isLoading.value = true;
-        const response = await instance.get('?method=getQuote&lang=en&format=json');
-        responseData.value = response.data.quoteText;
+        const response = await instance.get('/random');
+        responseData.value = response.data.content;
         isLoading.value = false;
       } catch (e) {
         isLoading.value = false;

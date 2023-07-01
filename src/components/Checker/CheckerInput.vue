@@ -1,6 +1,6 @@
 <template>
   <card :card-title="title">
-    <input type="text" class="card__input" :value="modelValue" @input="updateUserInput($event.target.value)">
+    <textarea class="card__input" :value="modelValue" @input="updateUserInput($event.target.value)"></textarea>
   </card>
 </template>
 
@@ -51,6 +51,15 @@ export default {
 
 .card__input {
   @include common-input;
+  font-family: Arial, sans-serif;
+  width: 300px;
+  height: 120px;
+  resize: none;
+
+  @media #{$common-screen-size} {
+    width: 200px;
+    height: 60px;
+  }
 }
 
 </style>

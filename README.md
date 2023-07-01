@@ -1,6 +1,6 @@
 # Vue Typing Speed Checker App
 
-This is a web application that helps you improve your typing speed and accuracy. The app allows you to specify a duration of time (1, 2, or 3 minutes) during which you will be presented with random quotes fetched from the [Forismatic API](https://forismatic.com/en/api/). Your task is to type each quote as accurately and quickly as possible. At the end of the specified duration, your typing speed and accuracy statistics will be displayed.
+This is a web application that helps you improve your typing speed and accuracy. The app allows you to specify a duration of time (1, 2, or 3 minutes) during which you will be presented with random quotes fetched from the [Quotable API](https://github.com/lukePeavey/quotable). Your task is to type each quote as accurately and quickly as possible. At the end of the specified duration, your typing speed and accuracy statistics will be displayed.
 
 ## Technologies Used
 
@@ -14,7 +14,7 @@ This is a web application that helps you improve your typing speed and accuracy.
 ## Features
 
 - Specify the duration of the typing test (1, 2, or 3 minutes).
-- Fetch random quotes from the Forismatic API.
+- Fetch random quotes from the Quotable API.
 - Start the typing test and see the quote to type.
 - Record your typing speed and accuracy.
 - Display your results at the end of the test.

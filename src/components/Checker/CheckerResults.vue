@@ -186,9 +186,8 @@ export default {
     align-items: center;
     margin-bottom: 0.5rem;
 
-    &__per-minute,
-    &__accuracy {
-      margin-bottom: 0.2rem;
+    .checker__accuracy {
+      margin-top: 0.5rem
     }
   }
 
@@ -235,6 +234,7 @@ export default {
 
   &__timer {
     font-size: 15px;
+    font-weight: 700;
   }
 }
 </style>

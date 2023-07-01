@@ -1,11 +1,10 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://api.forismatic.com/api/1.0/',
-    timeout: 30000,
+    baseURL: import.meta.env.VITE_BASE_URL,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Access-Control-Allow-Origin': import.meta.env.VITE_HOST_URL
     },
 });
 
